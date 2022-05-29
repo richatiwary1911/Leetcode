@@ -13,29 +13,24 @@ class Solution {
         
         ListNode slow = head;
         ListNode fast = head;
-        ListNode dummy = head;
         
         while(fast.next != null && fast.next.next != null) {
             slow = slow.next;
-            fast = fast.next.next;
+            fast = fast.next.next;            
         }
-        
         slow.next = reverse(slow.next);
         slow = slow.next;
         
         while(slow != null) {
+            if(head.val != slow.val) return false;
             
-            if(dummy.val != slow.val) return false;
-            
-            dummy = dummy.next;
+            head = head.next;
             slow = slow.next;
-            
         }
         return true;
     }
     
     public ListNode reverse(ListNode head) {
-        
         ListNode prev = null;
         ListNode curr = head;
         ListNode fwd;
@@ -46,7 +41,6 @@ class Solution {
             prev = curr;
             curr = fwd;
         }
-        
         head = prev;
         return head;        
     }
