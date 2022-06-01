@@ -15,10 +15,10 @@ class Node {
 
 class Solution {
     public Node copyRandomList(Node head) {
-        
-        Node curr = head;   
+         Node curr = head;   
         Node fwd = head;    
         
+        //inserting the node 
         while(curr != null) {
             fwd = curr.next;
             Node copy = new Node(curr.val);
@@ -28,6 +28,7 @@ class Solution {
             curr = fwd;
         }
         
+        //making the random links
         curr = head;
         while(curr != null) {
             if(curr.random != null) {
@@ -36,6 +37,7 @@ class Solution {
             curr = curr.next.next;
         }
         
+        //restoring the links 
         curr = head;
         
         Node dummy = new Node(0);   
@@ -46,8 +48,9 @@ class Solution {
             copy.next = curr.next;
             curr.next = fwd;
             
+            curr = curr.next;             
             copy = copy.next;
-            curr = curr.next;            
+                       
         }
         return dummy.next;
     }
